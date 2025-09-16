@@ -1,9 +1,15 @@
-import { SearchBarProps } from 'react-native-screens'
+import { SearchBarProps } from 'react-native-screens';
 import { useNavigation } from 'expo-router'
-import { useLayoutEffect, useState , useEffect} from 'react'
+import { useLayoutEffect, useState, useEffect } from 'react'
 import { colors } from '@/constants/tokens'
 
-const defaultSearchOptions: SearchBarProps = { tintColor: colors.primary, hideWhenScrolling: false }
+const defaultSearchOptions: SearchBarProps = {
+	headerIconColor: colors.primary,
+	hideWhenScrolling: false,
+	tintColor: 'white',
+	barTintColor: colors.minmumTrackTintColor
+	
+}
 export const useNavigationSearch = ({
 	searchBarOptions,
 	debounceDelay = 500,
@@ -18,10 +24,12 @@ export const useNavigationSearch = ({
 		setSearchTerm(text)
 	}
 	useEffect(() => {
-        const handler = setTimeout(() => {
-            setDebouncedTerm(searchTerm)
-        }, debounceDelay);
-        return ()=>{clearTimeout(handler)}
+		const handler = setTimeout(() => {
+			setDebouncedTerm(searchTerm)
+		}, debounceDelay)
+		return () => {
+			clearTimeout(handler)
+		}
 	}, [searchTerm, debounceDelay])
 	useLayoutEffect(() => {
 		navigation.setOptions({
@@ -32,5 +40,5 @@ export const useNavigationSearch = ({
 			},
 		})
 	}, [navigation, searchBarOptions])
-	return { searchTerm,debouncedTerm, setSearchTerm }
+	return { searchTerm, debouncedTerm, setSearchTerm }
 }

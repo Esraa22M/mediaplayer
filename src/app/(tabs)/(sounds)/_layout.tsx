@@ -4,14 +4,16 @@ import { defaultStyles } from '@/styles'
 import { StackScreenWithSearchBar } from '@/constants/layout'
 const SoundsScreenLayout = () => {
 	return (
-
-			<Stack>
-				<Stack.Screen
-					name="index"
-					options={{ headerTitle: 'Sounds', ...StackScreenWithSearchBar }}
-				/>
-			</Stack>
-	
+		<Stack>
+			<Stack.Screen
+				name="index"
+				options={{
+					headerTitle: 'Sounds',
+					...StackScreenWithSearchBar,
+		
+				}}
+			/>
+		</Stack>
 	)
 }
 export default SoundsScreenLayout
