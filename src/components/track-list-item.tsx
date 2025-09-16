@@ -1,4 +1,5 @@
-import { TouchableHighlight, View, StyleSheet, Text ,Image} from 'react-native'
+import { TouchableHighlight, View, StyleSheet, Text, Image } from 'react-native'
+import FastImage from 'react-native-fast-image'
 
 import { Dimensions } from 'react-native'
 import { resolveUnknownIrackIamgeUrl } from '@/constants/images'
@@ -17,13 +18,13 @@ export type Track = {
 }
 
 export type TrakListItemProps = {
-  track: Track
+	track: Track
 }
-export const TrackListItem = ({ track }:TrakListItemProps) => {
+export const TrackListItem = ({ track }: TrakListItemProps) => {
 	const isActiveTrack = false
 	return (
 		<TouchableHighlight>
-			<View style ={styles.trakItemContainer}>
+			<View style={styles.trakItemContainer}>
 				<View>
 					<Image
 						source={{
@@ -51,7 +52,7 @@ export const TrackListItem = ({ track }:TrakListItemProps) => {
 	)
 }
 const styles = StyleSheet.create({
-	trackImage: { borderRadius: 8, width: 0.2 * width, height: 0.2 * width },
+	trackImage: { borderRadius: 1000, width: 0.17 * width, height: 0.17 * width },
 	trackTitle: {
 		...defaultStyles.text,
 		fontSize: fontSize.sm,
@@ -59,5 +60,10 @@ const styles = StyleSheet.create({
 		maxWidth: width * 0.9,
 	},
 	trackCreator: { ...defaultStyles.text, color: colors?.textMuted, fontSize: 14, marginTop: 4 },
-	trakItemContainer:{flexDirection:"row", columnGap:14 , alignItems:"center", paddingRight:20}
+	trakItemContainer: {
+		flexDirection: 'row',
+		columnGap: 14,
+		alignItems: 'center',
+		paddingRight: 20,
+	},
 })

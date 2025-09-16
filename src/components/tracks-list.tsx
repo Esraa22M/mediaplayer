@@ -1,13 +1,23 @@
-import { FlatList, FlatListProps, ScrollView } from 'react-native'
+import { FlatList, FlatListProps, View } from 'react-native';
+import { Dimensions } from 'react-native';
 import library from '@/assets/data/library.json'
 import { TrackListItem } from './track-list-item';
 import {type Track } from './track-list-item';
-type TraksListProps = Partial<FlatListProps<any>>
+import { screenPadding } from '@/constants/tokens';
+import { utilsStyles } from '@/styles';
+type TraksListProps = Partial<FlatListProps<any>>;
+const { width, height} = Dimensions.get("window");
+
+const ItemDivider = () => {
+	
+	return <View style={{...utilsStyles.itemSeparator, marginVertical:20 , marginLeft:0.2*width}} />}
 export const TracksListComponent = ({ ...flatlistProps }: TraksListProps) => {
 	return (
 	
 			<FlatList
 				data={library}
+				ItemSeparatorComponent={ItemDivider}
+				style={{paddingHorizontal:screenPadding.horzintal}}
 				renderItem={({ item: track }) => {
 					return <TrackListItem track={{ ...track, title: track?.title, image: track?.artwork }} />
 				}}

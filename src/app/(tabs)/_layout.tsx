@@ -13,20 +13,15 @@ const TabsNavigation = () => {
 				tabBarLabelStyle: styles.tabLabel,
 				headerShown: false,
 				tabBarStyle: styles.tabBar,
-				tabBarBackground: () => (
-					<BlurView
-						intensity={40}
-						style={styles.blurBg}
-					></BlurView>
-				),
+				tabBarBackground: () => <BlurView intensity={40} style={styles.blurBg}></BlurView>,
 			}}
 		>
-			{tabsConfig.map(({name , title , icon}) => (
+			{tabsConfig.map(({ name, title, icon }) => (
 				<Tabs.Screen
 					name={name}
 					options={{
-						title:title,
-						tabBarIcon: ({color})=>icon(color),
+						title: title,
+						tabBarIcon: ({ color }) => icon(color),
 					}}
 					key={name}
 				/>
@@ -35,22 +30,27 @@ const TabsNavigation = () => {
 	)
 }
 const styles = StyleSheet.create({
-  tabLabel: {
-    fontSize: fontSize.xs,
-    fontWeight: '500',
-  },
-  tabBar: {
-    position: 'absolute',
-    borderTopLeftRadius: 20,
-    borderTopRightRadius: 20,
-    borderTopWidth: 0,
-    paddingTop: 8,
-  },
-  blurBg: {
-    ...StyleSheet.absoluteFillObject,
-    overflow: 'hidden',
-    borderTopLeftRadius: 20,
-    borderTopRightRadius: 20,
-  },
-}) 
+	tabLabel: {
+		fontSize: fontSize.xs,
+		fontWeight: '500',
+	},
+	tabBar: {
+		position: 'absolute',
+		backgroundColor: 'transparent',
+		borderTopLeftRadius: 20,
+		borderTopRightRadius: 20,
+		borderTopWidth: 0,
+		paddingTop: 8,
+		shadowOffset: { width: 0, height: -3 },
+		shadowOpacity: 0.1,
+		shadowRadius: 3,
+		elevation: 5, // Android
+	},
+	blurBg: {
+		...StyleSheet.absoluteFillObject,
+		overflow: 'hidden',
+		borderTopLeftRadius: 20,
+		borderTopRightRadius: 20,
+	},
+})
 export default TabsNavigation
